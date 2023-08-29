@@ -27,7 +27,7 @@ module ActiveRecord::Bitemporal
   end
 
   module Relation
-    using Module.new {
+    module ActiveRecordRelationWhere
       refine ActiveRecord::Relation::WhereClause do
         using Module.new {
           refine Arel::Nodes::LessThan do
@@ -124,7 +124,8 @@ module ActiveRecord::Bitemporal
           }
         end
       end
-    }
+    end
+    using ActiveRecordRelationWhere
 
     if ActiveRecord.version < Gem::Version.new("6.1.0")
       class WhereClauseWithCheckTable < ActiveRecord::Relation::WhereClause
