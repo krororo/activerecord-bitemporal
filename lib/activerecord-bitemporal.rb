@@ -158,6 +158,8 @@ module ActiveRecord::Bitemporal::Bitemporalize
 
     prepend_relation_delegate_class ActiveRecord::Bitemporal::Relation
     relation_delegate_class(ActiveRecord::Associations::CollectionProxy).prepend ActiveRecord::Bitemporal::CollectionProxy
+
+    self.implicit_order_column = bitemporal_id_key
   end
 end
 
